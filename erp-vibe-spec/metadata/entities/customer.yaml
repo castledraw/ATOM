@@ -1,0 +1,10 @@
+name: customer
+multi_tenant: true
+pk: guid_v7
+columns:
+  - { name: customer_id, type: guid_v7, pk: true }
+  - { name: tenant_id, type: guid_v7, indexed: true }
+  - { name: full_name, type: string }
+  - { name: primary_email, type: string }
+  - { name: notes, type: text }
+  - { name: created_at, type: timestamptz }

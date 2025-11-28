@@ -1,0 +1,15 @@
+name: address
+multi_tenant: true
+pk: guid_v7
+columns:
+  - { name: address_id, type: guid_v7, pk: true }
+  - { name: tenant_id, type: guid_v7, indexed: true }
+  - { name: customer_id, type: guid_v7, indexed: true }
+  - { name: country, type: string }
+  - { name: state, type: string }
+  - { name: city, type: string }
+  - { name: municipality, type: string }
+  - { name: district, type: string }
+  - { name: neighborhood, type: string }
+  - { name: line1, type: string }
+  - { name: postal_code, type: string }

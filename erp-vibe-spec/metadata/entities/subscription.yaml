@@ -1,0 +1,10 @@
+name: subscription
+multi_tenant: true
+pk: guid_v7
+columns:
+  - { name: subscription_id, type: guid_v7, pk: true }
+  - { name: tenant_id, type: guid_v7, indexed: true }
+  - { name: plan_id, type: guid_v7 }
+  - { name: status, type: string }
+  - { name: start_date, type: date }
+  - { name: end_date, type: date }

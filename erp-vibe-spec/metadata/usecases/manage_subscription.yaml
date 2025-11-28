@@ -1,0 +1,8 @@
+title: Gestionar suscripción de tenant
+domain: billing_subscriptions
+actors: [admin, finance]
+steps:
+  - Seleccionar tenant y plan/membresía.
+  - Registrar método de pago y ciclo de facturación.
+  - Activar/desactivar módulos habilitados por plan.
+  - Generar facturas y registrar pagos.

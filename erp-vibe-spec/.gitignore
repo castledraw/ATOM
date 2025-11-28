@@ -1,0 +1,4 @@
+# Documentation repo ignores
+.DS_Store
+*.log
+Thumbs.db

@@ -1,0 +1,5 @@
+identity_tenancy: "Gestión de tenants, usuarios y pools Cognito (global y por tenant)."
+billing_subscriptions: "Membresías, pagos y facturación de suscriptores."
+client_management: "Clientes finales por tenant: contactos, direcciones, redes sociales."
+configuration_memberships: "Habilitación de módulos y planes para cada tenant."
+deployment_management: "Despliegue de portales ERP por tenant y administración de subdominios."

@@ -1,0 +1,8 @@
+title: Gestionar cliente final
+domain: client_management
+actors: [tenant_user]
+steps:
+  - Crear cliente con emails, teléfonos y redes sociales.
+  - Registrar direcciones jerárquicas.
+  - Añadir notas y etiquetas.
+  - Consultar historial de interacciones.
