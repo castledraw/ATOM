@@ -6,9 +6,10 @@
 - Portal ERP por cliente (tenant) servido en subdominio propio y conectado a user pool dedicado.
 
 ## Backend
-- ASP.NET Core con arquitectura Vertical Slice.
+- ASP.NET Core con arquitectura Vertical Slice sobre un esquema de Clean Architecture.
 - APIs separadas por contexto (Identity, Admin Portal, ERP Tenant) sobre una base de datos PostgreSQL única.
 - Patrones: CQRS (commands/queries), Repository, Unit of Work, Inversión de Control.
+- Building blocks compartidos para dominio/entidades, contratos de CQRS y repositorios reutilizables por cualquier API.
 - Multi-tenant por columna `tenant_id` y claves primarias GUID v7.
 - OpenAPI + Swagger UI por API.
 

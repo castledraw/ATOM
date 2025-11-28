@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../ERP.Shared.Domain/ERP.Shared.Domain.csproj" />
+    <ProjectReference Include="../ERP.Shared.Application/ERP.Shared.Application.csproj" />
+  </ItemGroup>
+</Project>
