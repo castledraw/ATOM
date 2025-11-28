@@ -14,6 +14,14 @@ public static class CompanyEndpoints
             .WithSummary("Lista empresas")
             .WithDescription("Devuelve empresas por tenant con catálogo básico listo para CRUD");
 
+        group.MapGet("/{id:guid}/branches", (Guid id) =>
+        {
+            var branches = AdminPortalData.Branches.Where(b => b.CompanyId == id);
+            return Results.Ok(branches);
+        })
+        .WithSummary("Sucursales por empresa")
+        .WithDescription("Mock multi-sucursal alineado al modelo tenant/company/branch");
+
         group.MapGet("/{id:guid}/customers", (Guid id) =>
         {
             var customers = AdminPortalData.Customers.Where(c => c.CompanyId == id);
@@ -28,6 +36,13 @@ public static class CompanyEndpoints
             return company is null ? Results.NotFound() : Results.Ok(company);
         })
         .WithSummary("Detalle de empresa");
+
+        group.MapGet("/{id:guid}/segments", (Guid id) =>
+        {
+            var segments = AdminPortalData.CustomerSegments.Where(s => s.CompanyId == id);
+            return Results.Ok(segments);
+        })
+        .WithSummary("Segmentos de cliente por empresa");
 
         return app;
     }

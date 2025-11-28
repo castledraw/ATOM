@@ -1,6 +1,6 @@
 import React from 'react';
-import { languages, paymentTerms } from '../catalogs/mockCatalogs';
-import { mockCompanies, mockCustomers, mockTenants } from './data/mockTenants';
+import { currencies, languages, paymentTerms } from '../catalogs/mockCatalogs';
+import { mockBranches, mockCompanies, mockCustomers, mockIndustries, mockSegments, mockTenants } from './data/mockTenants';
 
 export const TenantsPage: React.FC = () => {
   return (
@@ -41,16 +41,30 @@ export const TenantsPage: React.FC = () => {
                 {mockCompanies
                   .filter((c) => c.tenantId === tenant.id)
                   .map((company) => (
-                    <li key={company.id} className="flex items-center justify-between rounded border border-slate-100 px-2 py-1">
-                      <div>
-                        <p className="font-semibold">{company.legalName}</p>
-                        <p className="text-xs text-slate-500">{company.code} • {company.defaultLanguage} • {company.defaultCurrency}</p>
+                    <li key={company.id} className="space-y-1 rounded border border-slate-100 px-2 py-2">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="font-semibold">{company.legalName}</p>
+                          <p className="text-xs text-slate-500">{company.code} • {company.defaultLanguage} • {company.defaultCurrency}</p>
+                        </div>
+                        <span
+                          className={`text-xs font-semibold ${company.enabled ? 'text-emerald-700' : 'text-amber-700'}`}
+                        >
+                          {company.enabled ? 'Activa' : 'Suspendida'}
+                        </span>
                       </div>
-                      <span
-                        className={`text-xs font-semibold ${company.enabled ? 'text-emerald-700' : 'text-amber-700'}`}
-                      >
-                        {company.enabled ? 'Activa' : 'Suspendida'}
-                      </span>
+                      <div className="rounded bg-slate-50 p-2">
+                        <p className="text-xs font-semibold text-slate-600">Sucursales</p>
+                        <ul className="mt-1 space-y-1">
+                          {mockBranches
+                            .filter((branch) => branch.companyId === company.id)
+                            .map((branch) => (
+                              <li key={branch.id} className="text-xs text-slate-600">
+                                <span className="font-semibold">{branch.code}</span> · {branch.name} · {branch.address}
+                              </li>
+                            ))}
+                        </ul>
+                      </div>
                     </li>
                   ))}
               </ul>
@@ -74,10 +88,10 @@ export const TenantsPage: React.FC = () => {
         <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
           <h4 className="text-sm font-semibold text-slate-800">Catálogo: Monedas</h4>
           <ul className="mt-2 space-y-1 text-sm text-slate-700">
-            {languages.map((lang) => (
-              <li key={lang.code} className="flex items-center justify-between rounded px-2 py-1 hover:bg-slate-50">
-                <span className="font-semibold">{lang.name}</span>
-                <span className="text-xs text-slate-500">{lang.code} {lang.isDefault ? '• default' : ''}</span>
+            {currencies.map((currency) => (
+              <li key={currency.code} className="flex items-center justify-between rounded px-2 py-1 hover:bg-slate-50">
+                <span className="font-semibold">{currency.name}</span>
+                <span className="text-xs text-slate-500">{currency.code} • {currency.symbol}</span>
               </li>
             ))}
           </ul>
@@ -91,6 +105,39 @@ export const TenantsPage: React.FC = () => {
                 <p className="text-xs text-slate-500">
                   {customer.number} • {customer.currency} • {customer.paymentTerm} • {customer.segment}
                 </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+          <h4 className="text-sm font-semibold text-slate-800">Idiomas y localización</h4>
+          <ul className="mt-2 space-y-1 text-sm text-slate-700">
+            {languages.map((lang) => (
+              <li key={lang.code} className="flex items-center justify-between rounded px-2 py-1 hover:bg-slate-50">
+                <span className="font-semibold">{lang.name}</span>
+                <span className="text-xs text-slate-500">{lang.code} {lang.isDefault ? '• default' : ''}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+          <h4 className="text-sm font-semibold text-slate-800">Industrias</h4>
+          <ul className="mt-2 space-y-1 text-sm text-slate-700">
+            {mockIndustries.map((industry) => (
+              <li key={industry.id} className="rounded px-2 py-1 hover:bg-slate-50">
+                <p className="font-semibold">{industry.name}</p>
+                <p className="text-xs text-slate-500">{industry.code} • {industry.description}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+          <h4 className="text-sm font-semibold text-slate-800">Segmentos por empresa</h4>
+          <ul className="mt-2 space-y-1 text-sm text-slate-700">
+            {mockSegments.map((segment) => (
+              <li key={segment.id} className="rounded px-2 py-1 hover:bg-slate-50">
+                <p className="font-semibold">{segment.name}</p>
+                <p className="text-xs text-slate-500">{segment.code} • {segment.description}</p>
               </li>
             ))}
           </ul>

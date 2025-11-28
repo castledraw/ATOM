@@ -49,6 +49,49 @@ export const mockCompanies = [
   },
 ];
 
+export const mockBranches = [
+  {
+    id: 'b-001',
+    companyId: 'c-001',
+    code: 'MX-HQ',
+    name: 'CDMX Centro',
+    phone: '+52 55 1234 5678',
+    email: 'cdmx@acme.com',
+    address: 'Av. Reforma 101, CDMX',
+    enabled: true,
+  },
+  {
+    id: 'b-002',
+    companyId: 'c-001',
+    code: 'MTY-SAT',
+    name: 'Monterrey Satélite',
+    phone: '+52 81 1111 2222',
+    email: 'mty@acme.com',
+    address: 'Blvd. Sendero 55, MTY',
+    enabled: true,
+  },
+  {
+    id: 'b-003',
+    companyId: 'c-002',
+    code: 'US-AUS',
+    name: 'Austin HQ',
+    phone: '+1 737 555 0101',
+    email: 'austin@acme.com',
+    address: 'Congress Ave 200, Austin',
+    enabled: true,
+  },
+  {
+    id: 'b-004',
+    companyId: 'c-003',
+    code: 'AR-CABA',
+    name: 'Buenos Aires Centro',
+    phone: '+54 11 5555 0101',
+    email: 'caba@globex.com',
+    address: 'Av. Libertador 4040, CABA',
+    enabled: false,
+  },
+];
+
 export const mockCustomers = [
   {
     id: 'cust-1',
@@ -71,6 +114,7 @@ export const mockCustomers = [
     segment: 'Premium',
     creditLimit: 25000,
     creditBlocked: false,
+    branchCode: 'US-AUS',
   },
   {
     id: 'cust-3',
@@ -82,5 +126,18 @@ export const mockCustomers = [
     segment: 'PyME',
     creditLimit: 8000,
     creditBlocked: true,
+    branchCode: 'AR-CABA',
   },
+];
+
+export const mockIndustries = [
+  { id: 'ind-1', code: 'HOTEL', name: 'Hospitalidad', description: 'Hoteles, resorts y centros vacacionales' },
+  { id: 'ind-2', code: 'RETAIL', name: 'Retail', description: 'Tiendas físicas y online' },
+  { id: 'ind-3', code: 'DISTRIB', name: 'Distribución', description: 'Mayoristas y logística' },
+];
+
+export const mockSegments = [
+  { id: 'seg-1', companyId: 'c-001', code: 'ENT', name: 'Enterprise', description: 'Grandes cuentas con procesos complejos' },
+  { id: 'seg-2', companyId: 'c-002', code: 'PREM', name: 'Premium', description: 'Clientes estratégicos' },
+  { id: 'seg-3', companyId: 'c-003', code: 'PYME', name: 'PyME', description: 'Pequeñas y medianas empresas' },
 ];

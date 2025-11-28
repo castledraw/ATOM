@@ -10,4 +10,6 @@ public record CustomerDetail(
     bool CreditBlocked,
     string Segment,
     string CompanyCode,
-    string TenantCode);
+    string TenantCode,
+    string? BranchCode,
+    string? LanguageCode);

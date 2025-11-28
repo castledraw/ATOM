@@ -9,4 +9,5 @@ public record CustomerSummary(
     string PaymentTerm,
     decimal CreditLimit,
     bool CreditBlocked,
-    string Segment);
+    string Segment,
+    string? BranchCode);

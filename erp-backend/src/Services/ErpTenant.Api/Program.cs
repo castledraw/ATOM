@@ -17,7 +17,7 @@ app.UseSwaggerUI();
 
 app.MapGet("/health", () => Results.Ok(new { status = "ok", message = "Tenant API ready" }));
 
-app.MapGet("/customers", (string? tenantCode, string? companyCode) =>
+app.MapGet("/customers", (string? tenantCode, string? companyCode, string? branchCode) =>
 {
     var query = TenantPortalData.Customers.AsQueryable();
     if (!string.IsNullOrWhiteSpace(tenantCode))
@@ -27,6 +27,10 @@ app.MapGet("/customers", (string? tenantCode, string? companyCode) =>
     if (!string.IsNullOrWhiteSpace(companyCode))
     {
         query = query.Where(c => c.CompanyCode.Equals(companyCode, StringComparison.OrdinalIgnoreCase));
+    }
+    if (!string.IsNullOrWhiteSpace(branchCode))
+    {
+        query = query.Where(c => string.Equals(c.BranchCode, branchCode, StringComparison.OrdinalIgnoreCase));
     }
     return Results.Ok(query);
 }).WithSummary("Listado de clientes por tenant/empresa");

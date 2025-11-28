@@ -18,6 +18,9 @@ public static class CatalogEndpoints
         group.MapGet("/languages", () => Results.Ok(AdminPortalData.Languages))
             .WithSummary("Idiomas soportados por tenant");
 
+        group.MapGet("/industries", () => Results.Ok(AdminPortalData.Industries))
+            .WithSummary("Catálogo de industrias ERP");
+
         return app;
     }
 }
