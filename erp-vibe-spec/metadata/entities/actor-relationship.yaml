@@ -1,0 +1,19 @@
+name: actor_relationship
+multi_tenant: true
+pk: guid_v7
+columns:
+  - { name: id, type: guid_v7, pk: true }
+  - { name: from_actor_id, type: guid_v7, indexed: true }
+  - { name: to_actor_id, type: guid_v7, indexed: true }
+  - { name: relationship_type, type: string }
+  - { name: valid_from, type: date }
+  - { name: valid_to, type: date }
+  - { name: percentage, type: decimal }
+  - { name: created_at, type: timestamptz }
+  - { name: created_by, type: string }
+  - { name: updated_at, type: timestamptz }
+  - { name: updated_by, type: string }
+  - { name: is_enabled, type: boolean }
+foreign_keys:
+  - { column: from_actor_id, references: actors.id }
+  - { column: to_actor_id, references: actors.id }

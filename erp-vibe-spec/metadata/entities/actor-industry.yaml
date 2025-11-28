@@ -1,0 +1,16 @@
+name: actor_industry
+multi_tenant: true
+pk: guid_v7
+columns:
+  - { name: id, type: guid_v7, pk: true }
+  - { name: actors_id, type: guid_v7, indexed: true }
+  - { name: industries_id, type: guid_v7, indexed: true }
+  - { name: is_primary, type: boolean }
+  - { name: created_at, type: timestamptz }
+  - { name: created_by, type: string }
+  - { name: updated_at, type: timestamptz }
+  - { name: updated_by, type: string }
+  - { name: is_enabled, type: boolean }
+foreign_keys:
+  - { column: actors_id, references: actors.id }
+  - { column: industries_id, references: industries.id }

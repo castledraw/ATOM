@@ -1,11 +1,10 @@
-name: tenant
+name: language
 multi_tenant: false
-pk: guid_v7
+pk: string
 columns:
-  - { name: id, type: guid_v7, pk: true }
-  - { name: code, type: string, description: "unique code for tenant" }
+  - { name: code, type: string, pk: true, description: "locale code e.g., es-ES" }
   - { name: name, type: string }
-  - { name: default_language_code, type: string }
+  - { name: is_default, type: boolean }
   - { name: created_at, type: timestamptz }
   - { name: created_by, type: string }
   - { name: updated_at, type: timestamptz }

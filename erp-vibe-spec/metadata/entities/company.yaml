@@ -1,0 +1,26 @@
+name: company
+multi_tenant: true
+pk: guid_v7
+columns:
+  - { name: id, type: guid_v7, pk: true }
+  - { name: tenants_id, type: guid_v7, indexed: true }
+  - { name: code, type: string }
+  - { name: legal_name, type: string }
+  - { name: trade_name, type: string }
+  - { name: tax_id, type: string }
+  - { name: registration_number, type: string }
+  - { name: countries_id, type: guid_v7 }
+  - { name: default_currency_id, type: guid_v7 }
+  - { name: default_language_code, type: string }
+  - { name: time_zone, type: string }
+  - { name: parent_company_id, type: guid_v7 }
+  - { name: created_at, type: timestamptz }
+  - { name: created_by, type: string }
+  - { name: updated_at, type: timestamptz }
+  - { name: updated_by, type: string }
+  - { name: is_enabled, type: boolean }
+foreign_keys:
+  - { column: tenants_id, references: tenants.id }
+  - { column: countries_id, references: countries.id }
+  - { column: default_currency_id, references: currencies.id }
+  - { column: parent_company_id, references: companies.id }

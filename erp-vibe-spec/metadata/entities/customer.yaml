@@ -2,9 +2,25 @@ name: customer
 multi_tenant: true
 pk: guid_v7
 columns:
-  - { name: customer_id, type: guid_v7, pk: true }
-  - { name: tenant_id, type: guid_v7, indexed: true }
-  - { name: full_name, type: string }
-  - { name: primary_email, type: string }
+  - { name: id, type: guid_v7, pk: true }
+  - { name: companies_id, type: guid_v7, indexed: true }
+  - { name: actors_id, type: guid_v7, indexed: true, description: "links to party record" }
+  - { name: customer_number, type: string, description: "ERP-style customer code per company" }
+  - { name: currencies_id, type: guid_v7, indexed: true }
+  - { name: payment_terms_id, type: guid_v7, indexed: true }
+  - { name: credit_limit, type: decimal }
+  - { name: credit_blocked, type: boolean }
+  - { name: sales_representative_actors_id, type: guid_v7, indexed: true }
+  - { name: is_prospect, type: boolean }
+  - { name: is_customer, type: boolean }
   - { name: notes, type: text }
   - { name: created_at, type: timestamptz }
+  - { name: created_by, type: string }
+  - { name: updated_at, type: timestamptz }
+  - { name: updated_by, type: string }
+foreign_keys:
+  - { column: companies_id, references: companies.id }
+  - { column: actors_id, references: actors.id }
+  - { column: currencies_id, references: currencies.id }
+  - { column: payment_terms_id, references: payment_terms.id }
+  - { column: sales_representative_actors_id, references: actors.id }

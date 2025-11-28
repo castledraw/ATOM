@@ -1,0 +1,18 @@
+name: actor
+multi_tenant: true
+pk: guid_v7
+columns:
+  - { name: id, type: guid_v7, pk: true }
+  - { name: companies_id, type: guid_v7, indexed: true }
+  - { name: code, type: string }
+  - { name: display_name, type: string }
+  - { name: is_company, type: boolean }
+  - { name: tax_id, type: string }
+  - { name: actor_type, type: string, description: "person|organization|internal" }
+  - { name: created_at, type: timestamptz }
+  - { name: created_by, type: string }
+  - { name: updated_at, type: timestamptz }
+  - { name: updated_by, type: string }
+  - { name: is_enabled, type: boolean }
+foreign_keys:
+  - { column: companies_id, references: companies.id }
