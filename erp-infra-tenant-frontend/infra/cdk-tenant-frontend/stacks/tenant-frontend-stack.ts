@@ -1,4 +1,32 @@
-// TODO: Stack para desplegar frontends por tenant usando Amplify/S3+CloudFront.
-// Parámetros: tenantId, subdomain, userPoolId, apiUrl.
-// Debe crear registros Route 53 y pipelines por tenant.
-export class TenantFrontendStack {}
+import * as cdk from 'aws-cdk-lib';
+import { Construct } from 'constructs';
+import * as s3 from 'aws-cdk-lib/aws-s3';
+import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
+import * as origins from 'aws-cdk-lib/aws-cloudfront-origins';
+
+interface TenantFrontendStackProps extends cdk.StackProps {
+  tenantId: string;
+  subdomain: string;
+  userPoolId: string;
+  apiUrl: string;
+}
+
+export class TenantFrontendStack extends cdk.Stack {
+  public readonly bucket: s3.Bucket;
+  public readonly distribution: cloudfront.Distribution;
+
+  constructor(scope: Construct, id: string, props: TenantFrontendStackProps) {
+    super(scope, id, props);
+
+    this.bucket = new s3.Bucket(this, 'TenantFrontendBucket', {
+      websiteIndexDocument: 'index.html',
+      publicReadAccess: false,
+    });
+
+    this.distribution = new cloudfront.Distribution(this, 'TenantDistribution', {
+      defaultBehavior: { origin: new origins.S3Origin(this.bucket) },
+      domainNames: [props.subdomain],
+      comment: `Tenant ${props.tenantId} connected to ${props.apiUrl} using user pool ${props.userPoolId}`,
+    });
+  }
+}

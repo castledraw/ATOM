@@ -1,0 +1,86 @@
+export const mockTenants = [
+  {
+    id: 't-001',
+    code: 'ACME',
+    name: 'Acme Corp Suite',
+    domain: 'acme.example.com',
+    defaultLanguage: 'es-MX',
+    companies: 2,
+    status: 'active',
+  },
+  {
+    id: 't-002',
+    code: 'GLOB',
+    name: 'Globex Group',
+    domain: 'globex.example.com',
+    defaultLanguage: 'en-US',
+    companies: 1,
+    status: 'pending',
+  },
+];
+
+export const mockCompanies = [
+  {
+    id: 'c-001',
+    tenantId: 't-001',
+    code: 'ACME-MX',
+    legalName: 'Acme Corp MX',
+    defaultCurrency: 'MXN',
+    defaultLanguage: 'es-MX',
+    enabled: true,
+  },
+  {
+    id: 'c-002',
+    tenantId: 't-001',
+    code: 'ACME-US',
+    legalName: 'Acme Corp USA',
+    defaultCurrency: 'USD',
+    defaultLanguage: 'en-US',
+    enabled: true,
+  },
+  {
+    id: 'c-003',
+    tenantId: 't-002',
+    code: 'GLOB-AR',
+    legalName: 'Globex Argentina',
+    defaultCurrency: 'ARS',
+    defaultLanguage: 'es-AR',
+    enabled: false,
+  },
+];
+
+export const mockCustomers = [
+  {
+    id: 'cust-1',
+    companyId: 'c-001',
+    number: 'C-1001',
+    displayName: 'Hotel Primavera',
+    currency: 'MXN',
+    paymentTerm: 'NET30',
+    segment: 'Enterprise',
+    creditLimit: 50000,
+    creditBlocked: false,
+  },
+  {
+    id: 'cust-2',
+    companyId: 'c-002',
+    number: 'C-2001',
+    displayName: 'Globex Retail',
+    currency: 'USD',
+    paymentTerm: 'NET15',
+    segment: 'Premium',
+    creditLimit: 25000,
+    creditBlocked: false,
+  },
+  {
+    id: 'cust-3',
+    companyId: 'c-003',
+    number: 'C-3001',
+    displayName: 'Distribuciones Andinas',
+    currency: 'ARS',
+    paymentTerm: 'CONTADO',
+    segment: 'PyME',
+    creditLimit: 8000,
+    creditBlocked: true,
+  },
+];
