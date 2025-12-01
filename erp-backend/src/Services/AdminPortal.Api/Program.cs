@@ -1,9 +1,7 @@
-using AdminPortal.Api.Modules.Catalogs.Endpoints;
 using AdminPortal.Api.Modules.Catalogs.Queries;
-using AdminPortal.Api.Modules.Companies.Endpoints;
 using AdminPortal.Api.Modules.Companies.Queries;
-using AdminPortal.Api.Modules.Tenants.Endpoints;
 using AdminPortal.Api.Modules.Tenants.Queries;
+using System.Reflection;
 using ERP.Shared.Application.CQRS;
 using ERP.Shared.Infrastructure.InMemory;
 using Microsoft.OpenApi.Models;
@@ -26,10 +24,17 @@ builder.Services.AddScoped<IQueryHandler<GetPaymentTermsQuery, IReadOnlyList<Adm
 builder.Services.AddScoped<IQueryHandler<GetLanguagesQuery, IReadOnlyList<AdminPortal.Api.Modules.Catalogs.Models.LanguageDto>>, GetLanguagesHandler>();
 builder.Services.AddScoped<IQueryHandler<GetIndustriesQuery, IReadOnlyList<AdminPortal.Api.Modules.Catalogs.Models.IndustryDto>>, GetIndustriesHandler>();
 
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Admin Portal API", Version = "v1" });
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    if (File.Exists(xmlPath))
+    {
+        c.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
+    }
 });
 
 var app = builder.Build();
@@ -37,9 +42,6 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.MapGet("/health", () => Results.Ok(new { status = "ok", message = "Admin Portal API ready" }));
-app.MapTenantEndpoints();
-app.MapCompanyEndpoints();
-app.MapCatalogEndpoints();
+app.MapControllers();
 
 app.Run();
