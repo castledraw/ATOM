@@ -71,6 +71,13 @@ public static class ErpSeedData
             new(Guid.Parse("99990000-0000-0000-0000-000000000003"), companies[2].Id, "C-3001", "Distribuciones Andinas", "ARS", "CONTADO", 8000m, true, "PyME", "AR-CABA", "es-AR")
         };
 
+        var users = new List<UserAccount>
+        {
+            new(Guid.Parse("11111111-1111-1111-1111-111111111111"), "admin@acme.test", "ACME", new []{"admin","ops"}, true),
+            new(Guid.Parse("22222222-2222-2222-2222-222222222222"), "seller@globex.test", "GLOB", new []{"sales"}, true),
+            new(Guid.Parse("33333333-3333-3333-3333-333333333333"), "ops@globex.test", "GLOB", new []{"ops"}, false)
+        };
+
         store
             .Seed(tenants)
             .Seed(companies)
@@ -80,7 +87,8 @@ public static class ErpSeedData
             .Seed(languages)
             .Seed(industries)
             .Seed(segments)
-            .Seed(customers);
+            .Seed(customers)
+            .Seed(users);
 
         return store;
     }

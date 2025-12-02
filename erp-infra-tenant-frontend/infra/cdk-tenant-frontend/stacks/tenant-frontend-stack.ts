@@ -20,13 +20,23 @@ export class TenantFrontendStack extends cdk.Stack {
 
     this.bucket = new s3.Bucket(this, 'TenantFrontendBucket', {
       websiteIndexDocument: 'index.html',
-      publicReadAccess: false,
+      blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
+      versioned: true,
+      enforceSSL: true,
     });
 
+    const oai = new cloudfront.OriginAccessIdentity(this, 'TenantOAI');
+    this.bucket.grantRead(oai);
+
     this.distribution = new cloudfront.Distribution(this, 'TenantDistribution', {
-      defaultBehavior: { origin: new origins.S3Origin(this.bucket) },
+      defaultBehavior: {
+        origin: new origins.S3Origin(this.bucket, { originAccessIdentity: oai }),
+        viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+      },
       domainNames: [props.subdomain],
       comment: `Tenant ${props.tenantId} connected to ${props.apiUrl} using user pool ${props.userPoolId}`,
+      enableLogging: true,
+      defaultRootObject: 'index.html',
     });
   }
 }

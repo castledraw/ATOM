@@ -17,6 +17,9 @@ export class VpcStack extends cdk.Stack {
         { name: 'public', subnetType: ec2.SubnetType.PUBLIC },
         { name: 'private', subnetType: ec2.SubnetType.PRIVATE_WITH_EGRESS },
       ],
+      flowLogs: {
+        cloudwatch: { destination: ec2.FlowLogDestination.toCloudWatchLogs() },
+      },
     });
   }
 }

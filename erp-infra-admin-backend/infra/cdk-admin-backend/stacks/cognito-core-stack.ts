@@ -13,12 +13,16 @@ export class CognitoCoreStack extends cdk.Stack {
     this.userPool = new cognito.UserPool(this, 'AdminUserPool', {
       selfSignUpEnabled: false,
       userPoolName: 'erp-admin-users',
+      passwordPolicy: { minLength: 12, requireDigits: true, requireLowercase: true, requireUppercase: true, requireSymbols: true },
+      accountRecovery: cognito.AccountRecovery.EMAIL_ONLY,
+      mfa: cognito.Mfa.OPTIONAL,
     });
 
     this.userPool.addClient('AdminAppClient', {
       userPoolClientName: 'erp-admin-portal',
       authFlows: { userPassword: true },
       generateSecret: false,
+      oAuth: { flows: { authorizationCodeGrant: true }, callbackUrls: ['https://admin.example.com/callback'] },
     });
   }
 }

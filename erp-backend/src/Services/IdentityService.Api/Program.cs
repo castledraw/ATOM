@@ -1,8 +1,10 @@
 using System.Reflection;
+using ERP.Shared.Infrastructure.InMemory;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddSharedInMemoryRepositories();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>

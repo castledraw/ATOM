@@ -1,5 +1,6 @@
 using System.Reflection;
 using ErpTenant.Api.Customers;
+using ErpTenant.Api.Customers.Commands;
 using ErpTenant.Api.Customers.Queries;
 using ERP.Shared.Application.CQRS;
 using ERP.Shared.Infrastructure.InMemory;
@@ -7,9 +8,12 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSharedInMemoryReadModels();
+builder.Services.AddSharedInMemoryRepositories();
 builder.Services.AddScoped<IQueryHandler<GetCustomersQuery, IReadOnlyList<CustomerDetail>>, GetCustomersHandler>();
 builder.Services.AddScoped<IQueryHandler<GetCustomerByIdQuery, CustomerDetail?>, GetCustomerByIdHandler>();
+builder.Services.AddScoped<ICommandHandler<CreateCustomerCommand, CustomerDetail>, CustomerCommandHandler>();
+builder.Services.AddScoped<ICommandHandler<UpdateCustomerCreditCommand, CustomerDetail?>, CustomerCommandHandler>();
+builder.Services.AddScoped<ICommandHandler<UpdateCustomerProfileCommand, CustomerDetail?>, CustomerCommandHandler>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

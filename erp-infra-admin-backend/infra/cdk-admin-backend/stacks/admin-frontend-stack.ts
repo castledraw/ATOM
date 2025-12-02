@@ -17,12 +17,20 @@ export class AdminFrontendStack extends cdk.Stack {
 
     this.bucket = new s3.Bucket(this, 'AdminFrontendBucket', {
       websiteIndexDocument: 'index.html',
-      publicReadAccess: false,
+      blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
+      versioned: true,
+      enforceSSL: true,
     });
 
+    const originAccessIdentity = new cloudfront.OriginAccessIdentity(this, 'AdminOAI');
+    this.bucket.grantRead(originAccessIdentity);
+
     this.distribution = new cloudfront.Distribution(this, 'AdminDistribution', {
-      defaultBehavior: { origin: new origins.S3Origin(this.bucket) },
+      defaultBehavior: { origin: new origins.S3Origin(this.bucket, { originAccessIdentity }) },
       domainNames: [props.distributionDomain],
+      defaultRootObject: 'index.html',
+      enableLogging: true,
+      comment: 'Admin portal CloudFront + S3 static hosting',
     });
   }
 }
