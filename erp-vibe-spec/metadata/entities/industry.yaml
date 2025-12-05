@@ -1,0 +1,14 @@
+name: industry
+multi_tenant: false
+pk: guid_v7
+columns:
+  - { name: id, type: guid_v7, pk: true }
+  - { name: code, type: string }
+  - { name: name, type: string }
+  - { name: description, type: string }
+  - { name: created_at, type: timestamptz }
+  - { name: created_by, type: string }
+  - { name: updated_at, type: timestamptz }
+  - { name: updated_by, type: string }
+  - { name: is_enabled, type: boolean }
+foreign_keys: []

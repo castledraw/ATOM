@@ -1,0 +1,22 @@
+name: Infra Tenant Frontend CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  synth:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install deps
+        run: npm install
+      - name: CDK synth
+        run: npx cdk synth
+      # TODO: parametrizar despliegues por tenant y gestionar dominios/subdominios

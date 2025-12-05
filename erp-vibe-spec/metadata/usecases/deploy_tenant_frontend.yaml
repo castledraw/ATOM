@@ -1,0 +1,7 @@
+title: Desplegar frontend para tenant
+domain: deployment_management
+actors: [admin, devops]
+steps:
+  - Recibir parámetros: tenantId, subdominio, userPoolId, apiUrl.
+  - Provisionar app Amplify/S3+CloudFront y registro DNS en Route 53.
+  - Configurar variables de entorno y automatizar pipeline de despliegue.

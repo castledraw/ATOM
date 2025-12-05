@@ -1,0 +1,23 @@
+name: address
+multi_tenant: true
+pk: guid_v7
+columns:
+  - { name: id, type: guid_v7, pk: true }
+  - { name: tenant_id, type: guid_v7, indexed: true }
+  - { name: customer_id, type: guid_v7, indexed: true }
+  - { name: company_branches_id, type: guid_v7, indexed: true }
+  - { name: country, type: string }
+  - { name: state, type: string }
+  - { name: city, type: string }
+  - { name: municipality, type: string }
+  - { name: district, type: string }
+  - { name: neighborhood, type: string }
+  - { name: line1, type: string }
+  - { name: postal_code, type: string }
+  - { name: usage_role, type: string, description: "BILLING|SHIPPING|LEGAL|PERSONAL" }
+  - { name: valid_from, type: date }
+  - { name: valid_to, type: date }
+foreign_keys:
+  - { column: tenant_id, references: tenants.id }
+  - { column: customer_id, references: customers.id }
+  - { column: company_branches_id, references: company_branches.id }

@@ -1,0 +1,17 @@
+name: localized_label
+multi_tenant: false
+pk: guid_v7
+columns:
+  - { name: id, type: guid_v7, pk: true }
+  - { name: entity_name, type: string }
+  - { name: entity_id, type: guid_v7 }
+  - { name: field_name, type: string }
+  - { name: language_code, type: string }
+  - { name: translated_text, type: string }
+  - { name: created_at, type: timestamptz }
+  - { name: created_by, type: string }
+  - { name: updated_at, type: timestamptz }
+  - { name: updated_by, type: string }
+  - { name: is_enabled, type: boolean }
+foreign_keys:
+  - { column: language_code, references: languages.code }

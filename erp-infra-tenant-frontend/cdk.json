@@ -1,0 +1,3 @@
+{
+  "app": "npx ts-node --prefer-ts-exts infra/cdk-tenant-frontend/bin/cdk-tenant-frontend.ts"
+}

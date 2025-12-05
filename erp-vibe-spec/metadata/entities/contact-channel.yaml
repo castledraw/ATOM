@@ -1,0 +1,10 @@
+name: contact_channel
+multi_tenant: true
+pk: guid_v7
+columns:
+  - { name: contact_channel_id, type: guid_v7, pk: true }
+  - { name: tenant_id, type: guid_v7, indexed: true }
+  - { name: customer_id, type: guid_v7, indexed: true }
+  - { name: type, type: string, description: "phone|email|social" }
+  - { name: value, type: string }
+  - { name: label, type: string }

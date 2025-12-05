@@ -1,0 +1,13 @@
+name: language
+multi_tenant: false
+pk: string
+columns:
+  - { name: code, type: string, pk: true, description: "locale code e.g., es-ES" }
+  - { name: name, type: string }
+  - { name: is_default, type: boolean }
+  - { name: created_at, type: timestamptz }
+  - { name: created_by, type: string }
+  - { name: updated_at, type: timestamptz }
+  - { name: updated_by, type: string }
+  - { name: is_enabled, type: boolean }
+foreign_keys: []

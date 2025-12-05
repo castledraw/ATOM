@@ -1,0 +1,17 @@
+name: customer_segment
+multi_tenant: true
+pk: guid_v7
+columns:
+  - { name: id, type: guid_v7, pk: true }
+  - { name: companies_id, type: guid_v7, indexed: true }
+  - { name: code, type: string }
+  - { name: name, type: string }
+  - { name: description, type: string }
+  - { name: is_default, type: boolean }
+  - { name: created_at, type: timestamptz }
+  - { name: created_by, type: string }
+  - { name: updated_at, type: timestamptz }
+  - { name: updated_by, type: string }
+  - { name: is_enabled, type: boolean }
+foreign_keys:
+  - { column: companies_id, references: companies.id }

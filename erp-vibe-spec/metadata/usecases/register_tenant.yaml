@@ -1,0 +1,7 @@
+title: Registrar nuevo tenant
+domain: identity_tenancy
+actors: [admin]
+steps:
+  - Admin ingresa datos básicos del tenant y dominio deseado.
+  - Sistema crea registro de tenant y user pool dedicado.
+  - Se provisiona despliegue inicial del portal ERP del tenant.
